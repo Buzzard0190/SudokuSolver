@@ -5,8 +5,7 @@
 
 using namespace std;
 
-// XXX
-
+// Main code provided by instructor to check input
 int main(int argc, char *argv[]) {
     string puzzle;
     cin >> puzzle;
@@ -20,17 +19,22 @@ int main(int argc, char *argv[]) {
                 }
     
     
-    // XXX
-	
+    //calls constructor to build sudoku grid
     SudokuGrid grid(puzzle);
-    grid.printPuzzle();
     
+    //prints initial puzzle and spacing
+    grid.printPuzzle();
     std::cout << "\n\n";
 
+    //deduce values to make the brute force solve quicker
     grid.deduce();
-    grid.solveSudoku();
     
-    grid.printPuzzle();
+    //runs brute force solver and will print error if unable to solve
+    if (grid.solveSudoku()) {
+        grid.printPuzzle();
+    } else {
+        std::cout << "Unable to solve puzzle";
+    }
     
     return 0;
 }
